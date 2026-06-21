@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "toko_mini";
+$host = "sql309.infinityfree.com";
+$user = "if0_42192166";
+$pass = "NIUroitq1srmdN3";
+$db   = "if0_42192166_toko_mini";
 
 $koneksi = mysqli_connect(
     $host,

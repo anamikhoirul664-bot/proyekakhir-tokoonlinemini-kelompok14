@@ -104,7 +104,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
                     </button>
 
-                    <a href="profil.php"
+                    <a href="profile.php"
                     class="w-full md:w-auto text-center bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-8 py-3 rounded-xl transition">
 
                         Kembali

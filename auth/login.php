@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 include '../config/koneksi.php';
 
@@ -27,8 +30,13 @@ if(isset($_POST['login'])){
             $data['password']
         )){
 
+            // PENGAMAN EKSTRA: Hancurkan id session lama yang rusak di browser, ganti dengan yang baru
+            session_regenerate_id(true);
+
+            // Data sekarang akan tersimpan dengan sempurna berbentuk array di server
             $_SESSION['user'] = $data;
 
+            // Alihkan langsung ke halaman utama
             header("Location: ../index.php");
             exit;
 
@@ -42,20 +50,14 @@ if(isset($_POST['login'])){
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Login User</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex items-center justify-center p-6">
 
 <div class="bg-white p-10 rounded-[30px] shadow-2xl w-full max-w-md">
@@ -75,9 +77,9 @@ content="width=device-width, initial-scale=1.0">
     <?php endif; ?>
 
     <?php if(isset($_SESSION['success'])): ?>
-    <div class="bg-green-100 text-green-600 p-4 rounded-xl mb-5">
-        <?= $_SESSION['success']; ?>
-    </div>
+        <div class="bg-green-100 text-green-600 p-4 rounded-xl mb-5">
+            <?= $_SESSION['success']; ?>
+        </div>
     <?php unset($_SESSION['success']); endif; ?>
 
     <form method="POST" class="space-y-5">
@@ -87,36 +89,31 @@ content="width=device-width, initial-scale=1.0">
         name="email"
         required
         placeholder="Email"
-        class="w-full border rounded-xl px-5 py-4">
+        class="w-full border rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
         <input
         type="password"
         name="password"
         required
         placeholder="Password"
-        class="w-full border rounded-xl px-5 py-4">
+        class="w-full border rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
         <button
         type="submit"
         name="login"
         class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition">
-
             Login Sekarang
         </button>
 
     </form>
 
     <div class="text-center mt-5">
-
         <p class="text-sm text-gray-500">
             Belum punya akun?
-
-            <a href="register.php"
-            class="text-blue-600 font-semibold">
+            <a href="register.php" class="text-blue-600 font-semibold hover:underline">
                 Register
             </a>
         </p>
-
     </div>
 
 </div>

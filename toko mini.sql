@@ -1,5 +1,4 @@
-CREATE DATABASE toko_mini;
-USE toko_mini;
+
 
 
 CREATE TABLE users (
@@ -107,3 +106,80 @@ VALUES
 ('Fashion'),
 ('Kesehatan'),
 ('Aksesoris');
+
+CREATE TABLE cart (
+    id_cart INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    id_produk INT NOT NULL,
+    qty INT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_user)
+    REFERENCES users(id_user)
+    ON DELETE CASCADE,
+
+    FOREIGN KEY (id_produk)
+    REFERENCES produk(id_produk)
+    ON DELETE CASCADE
+);
+
+DELETE FROM users
+WHERE email='admin@gmail.com';
+
+INSERT INTO users (
+    nama,
+    email,
+    password,
+    role
+)
+VALUES (
+    'Administrator',
+    'admin@gmail.com',
+    'admin123',
+    'admin'
+);
+
+UPDATE users 
+SET password = '$2y$10$TSC3hKziVtCwaD.PUlCNiOYB1XGjImZ.N1lQ0jJFBEz1USaELzIvS'
+WHERE email = 'admin@gmail.com';
+
+ALTER TABLE produk
+ADD spesifikasi TEXT AFTER deskripsi;
+
+ALTER TABLE produk
+ADD brand VARCHAR(100) AFTER id_kategori,
+
+ADD kondisi ENUM(
+'Baru',
+'Bekas'
+) DEFAULT 'Baru' AFTER harga,
+
+ADD garansi VARCHAR(100)
+AFTER kondisi,
+
+ADD berat INT
+AFTER garansi,
+
+ADD status_produk ENUM(
+'tersedia',
+'habiss'
+) DEFAULT 'tersedia'
+AFTER stok;
+
+ALTER TABLE users
+ADD foto VARCHAR(255) NULL,
+ADD no_hp VARCHAR(20) NULL,
+ADD alamat TEXT NULL;
+
+DESC users;
+
+ALTER TABLE pesanan 
+ADD batas_bayar DATETIME NULL,
+ADD payment_ref VARCHAR(100),
+ADD paid_at DATETIME NULL;
+
+ALTER TABLE pesanan ADD COLUMN bukti_pembayaran VARCHAR(255) DEFAULT NULL;
+ALTER TABLE produk ADD COLUMN file_pdf VARCHAR(255) NULL;
+
+DESC cart;
+SELECT * FROM cart;
