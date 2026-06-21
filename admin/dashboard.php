@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="group-hover:translate-x-1 transition">→</span>
         </a>
 
-        <a href="kategori/tambah.php"
+        <a href="kategori/index.php"
            class="flex items-center justify-between bg-green-500 text-white p-4 rounded-xl hover:bg-green-600 transition group">
 
             <div class="flex items-center gap-3">
