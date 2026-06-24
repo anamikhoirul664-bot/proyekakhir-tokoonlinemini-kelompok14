@@ -143,15 +143,10 @@ function badge($status){
 
         <div id="clock" class="bg-gray-100 px-4 py-2 rounded-xl text-sm font-medium shadow-sm text-gray-700"></div>
 
-        <a href="api/download_excel.php"
-           class="bg-green-500 hover:bg-green-600 transition text-white px-4 py-2 rounded-xl text-sm font-semibold shadow flex items-center gap-1">
-            <span>📊</span> Excel
-        </a>
-
-        <a href="api/laporan_penjualan_pdf.php" 
-           target="_blank"
-           class="bg-red-500 hover:bg-red-600 transition text-white px-4 py-2 rounded-xl text-sm font-semibold shadow flex items-center gap-1">
-            <span>📄</span> PDF
+        <a href="api/filter_laporan.php"
+           class="bg-blue-600 hover:bg-blue-700 transition text-white px-4 py-2 rounded-xl text-sm font-semibold shadow flex items-center gap-2">
+            <i class="fas fa-print"></i>
+            <span>Cetak Laporan</span>
         </a>
 
         <div class="relative cursor-pointer p-2 hover:bg-slate-50 rounded-xl transition" id="btn-notif">
